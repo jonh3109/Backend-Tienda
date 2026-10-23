@@ -1,5 +1,6 @@
 import express from "express";
 import "dotenv/config";
+import cors from "cors"
 
 export class Server {
   constructor() {
@@ -47,6 +48,7 @@ export class Server {
 
   //METODO 3 DE MI CLASE SERVER
   middlewares() {
+    this.app.use(cors());
     this.app.use(express.static("public"));
     this.app.use(express.json());
   }
