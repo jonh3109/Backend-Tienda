@@ -1,4 +1,3 @@
-
 import express from "express";
 import "dotenv/config";
 
@@ -15,16 +14,41 @@ export class Server {
 
   routes() {
     // segundo metodo de mi clase server.
-    this.app.get("/", (req, res) => {
-      res.send({
-         message: "Hola mundo desde mi servidor" 
+    this.app.get("/api", (req, res) => {
+      res.json({
+         msg: "GET - Server " 
+        
+        });
+    });
+
+    this.app.post("/api", (req, res) => {
+      res.json({
+         msg: "POST - Server " 
+        
+        });
+    });
+
+    this.app.put("/api", (req, res) => {
+      res.json({
+         msg: "PUT - Server " 
+        
+        });
+    });
+
+    this.app.delete("/api", (req, res) => {
+      res.json({
+         msg: "DELETE - Server " 
         
         });
     });
   }
+
+
+
   //METODO 3 DE MI CLASE SERVER
   middlewares() {
     this.app.use(express.static("public"));
+    this.app.use(express.json());
   }
 
   //primer metodo de mi clase server 
@@ -35,3 +59,4 @@ export class Server {
   }
 }
 export default Server;
+
