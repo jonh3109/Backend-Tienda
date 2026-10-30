@@ -1,47 +1,22 @@
-import express from "express";
+import express, { Router } from "express";
 import "dotenv/config";
 import cors from "cors"
+import router from "../routes/users.js";
+
 
 export class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT || 3001;
 
-
+    this.usuariosPath = '/api/usuarios';
     this.middlewares();
     this.routes();
 
   }
 
   routes() {
-    // segundo metodo de mi clase server.
-    this.app.get("/api", (req, res) => {
-      res.json({
-         msg: "GET - Server " 
-        
-        });
-    });
-
-    this.app.post("/api", (req, res) => {
-      res.json({
-         msg: "POST - Server " 
-        
-        });
-    });
-
-    this.app.put("/api", (req, res) => {
-      res.json({
-         msg: "PUT - Server " 
-        
-        });
-    });
-
-    this.app.delete("/api", (req, res) => {
-      res.json({
-         msg: "DELETE - Server " 
-        
-        });
-    });
+    this.app.use (this.usuariosPath, router);
   }
 
 
